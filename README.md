@@ -1,2 +1,0 @@
-# conFusionAngularExercise
-conFusionAngularExercise/
