@@ -1,0 +1,41 @@
+
+
+<div class="container"
+fxLayout="row"
+fxLayout.sm="column"
+fxLayout.xs="column"
+fxLayoutAlign.gt-md="space-around center"
+fxLayoutGap="10px" 
+fxLayoutGap.xs="0">
+
+<div fxFlex="40" *ngIf="dish"> <!-- Dish details start -->
+  <md-card> <!-- Material Design Card start -->
+    <md-card-header>
+       <md-card-title>
+          <h3>{{ dish.name | uppercase }}</h3>
+       </md-card-title>
+    </md-card-header>
+    <img md-card-image src="{{dish.image}}" alt="{{dish.name}}" />
+    <md-card-content>
+       <p>{{ dish.description }}</p>
+    </md-card-content>
+    <md-card-actions>
+       <button md-button>LIKE</button>
+       <button md-button>SHARE</button>
+    </md-card-actions>
+  </md-card> <!-- Material Design Card end -->
+</div> <!-- Dish details end -->
+
+<div fxFlex="40" *ngIf="dish"> <!-- Dish comments start -->
+  <!-- <p>Display the list of comments here</p> -->
+  <md-list fxFlex>
+      <h2 md-line>Comments</h2>
+      <md-list-item *ngFor="let comment of dish.comments">
+         <p md-line>{{comment.comment}}</p>
+         <p md-line>{{comment.rating}} Stars</p>
+         <p md-line>-- {{comment.author}} {{comment.date | date }}</p>
+      </md-list-item>
+    </md-list>
+</div> <!-- Dish comments end -->
+
+</div>
