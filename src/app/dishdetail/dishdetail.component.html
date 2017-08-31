@@ -1,5 +1,3 @@
-
-
 <div class="container"
 fxLayout="row"
 fxLayout.sm="column"
@@ -30,19 +28,68 @@ fxLayoutGap.xs="0">
   </md-card> <!-- Material Design Card end -->
 </div> <!-- Dish details end -->
 
-<div fxFlex="40" *ngIf="dish"> <!-- Dish comments start -->
-  <!-- <p>Display the list of comments here</p> -->
-  <md-list fxFlex>
-      <h2 md-line>Comments</h2>
-      <md-list-item *ngFor="let comment of dish.comments">
-         <p md-line>{{comment.comment}}</p>
-         <p md-line>{{comment.rating}} Stars</p>
-         <p md-line>-- {{comment.author}} {{comment.date | date }}</p>
-      </md-list-item>
-    </md-list>
-</div> <!-- Dish comments end -->
 <div [hidden]="dish">
-    <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+<md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+</div>
+
+
+<div fxFlex="40"
+class="container"
+ fxLayout="column"
+ fxLayoutGap="10px"
+*ngIf="dish">
+
+<div fxFlex fxFlexOffset="20px">
+<h3>Comments</h3>
+<md-list>
+  <md-list-item *ngFor="let x of dish.comments">
+    <p md-line>{{x.comment}}</p>
+    <p md-line>{{x.rating}} Stars</p>
+    <p md-line>-- {{x.author}} {{x.date | date}}</p>
+  </md-list-item>
+<!-- Preview -->
+  <md-list-item *ngIf="commentForm.valid">
+    <p md-line>{{comment}}</p>
+    <p md-line>{{rating}} Stars</p>
+    <p md-line>-- {{author}}</p>
+  </md-list-item>
+<!-- Preview -->
+  </md-list>
+</div>
+<div fxFlex fxFlexOffset="20px" class="form-size">
+
+      <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+      <p>
+        <md-input-container class="full-width"
+         dividerColor="{{(formErrors.author) ? 'warn' : 'primary'}}">
+          <input mdInput formControlName="author" placeholder="Name" type="text" 
+          [(ngModel)]="author"
+          required>
+          <md-hint>
+            <span [hidden]="!(formErrors.author)">
+              {{formErrors.author}}</span>
+          </md-hint>
+        </md-input-container>
+      </p>
+      <p>
+             <md-slider mdInput formControlName="rating" min="1" max="5" step="1" value="5" thumbLabel tickInterval="1" [(ngModel)]="rating"></md-slider>
+      </p>
+      <p>
+        <md-input-container class="full-width">
+          <textarea mdInput formControlName="comment" placeholder="Your Comment" rows=5 required [(ngModel)]="comment"></textarea>
+          <md-hint>
+            <span [hidden]="!(formErrors.comment)">
+              {{formErrors.comment}}</span>
+          </md-hint>
+        </md-input-container>
+      </p>
+      <button type="submit" md-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
+    </form>
   </div>
+</div>
+
+<div [hidden]="dish">
+<md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+</div>
 
 </div>
