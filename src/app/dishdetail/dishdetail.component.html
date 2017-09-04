@@ -28,8 +28,12 @@ fxLayoutGap.xs="0">
   </md-card> <!-- Material Design Card end -->
 </div> <!-- Dish details end -->
 
-<div [hidden]="dish">
-<md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+<div [hidden]="dish || errMess">
+  <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+</div>
+<div *ngIf="errMess">
+  <h2>Error</h2>
+  <h4>{{errMess}}</h4>
 </div>
 
 
@@ -88,8 +92,12 @@ class="container"
   </div>
 </div>
 
-<div [hidden]="dish">
-<md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+<div [hidden]="dish || errMess">
+  <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
+</div>
+<div *ngIf="errMess">
+  <h2>Error</h2>
+  <h4>{{errMess}}</h4>
 </div>
 
 </div>
