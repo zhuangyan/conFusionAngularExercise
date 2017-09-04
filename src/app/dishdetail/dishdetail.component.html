@@ -6,7 +6,7 @@ fxLayoutAlign.gt-md="space-around center"
 fxLayoutGap="10px" 
 fxLayoutGap.xs="0">
 
-<div fxFlex="40" *ngIf="dish"> <!-- Dish details start -->
+<div fxFlex="40" *ngIf="dish" [@visibility]="visibility"> <!-- Dish details start -->
   <md-card> <!-- Material Design Card start -->
     <md-card-header>
        <md-card-title>
@@ -41,7 +41,7 @@ fxLayoutGap.xs="0">
 class="container"
  fxLayout="column"
  fxLayoutGap="10px"
-*ngIf="dish">
+*ngIf="dish" [@visibility]="visibility">
 
 <div fxFlex fxFlexOffset="20px">
 <h3>Comments</h3>
