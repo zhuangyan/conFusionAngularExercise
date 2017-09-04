@@ -31,6 +31,9 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { HttpModule } from '@angular/http';
 import { baseURL } from './shared/baseurl';
+import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restConfig';
+
 
 
 
@@ -56,6 +59,7 @@ import { baseURL } from './shared/baseurl';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    RestangularModule.forRoot(RestangularConfigFactory),    
     HttpModule
   ],
   entryComponents: [
